@@ -1,0 +1,853 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0b63ff" />
+  <title>Dr Mohammad Nadir Sahak | Generative AI for Work & Research</title>
+  <style>
+    :root{
+      --bg:#ffffff;
+      --ink:#0b1020;
+      --muted:#4b5563;
+      --muted2:#6b7280;
+      --line:#e5e7eb;
+      --panel:#ffffff;
+      --shadow: 0 18px 50px rgba(10,24,62,.10);
+      --shadow2: 0 10px 30px rgba(10,24,62,.08);
+      --blue:#0b63ff;
+      --blue2:#2d8cff;
+      --teal:#19c4d6;
+      --green:#21c55d;
+      --amber:#f59e0b;
+      --radius:18px;
+      --radius2:14px;
+      --max: 1120px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color:var(--ink);
+      background:
+        radial-gradient(1200px 700px at 10% 0%, rgba(11,99,255,.10), transparent 60%),
+        radial-gradient(900px 600px at 92% 12%, rgba(25,196,214,.10), transparent 58%),
+        radial-gradient(900px 600px at 85% 95%, rgba(33,197,93,.10), transparent 60%),
+        #ffffff;
+      overflow-x:hidden;
+    }
+
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 22px}
+
+    /* Top navigation */
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:60;
+      background: rgba(255,255,255,.80);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav{
+      display:grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items:center;
+      gap:14px;
+      padding:14px 0;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      min-width: 220px;
+    }
+
+    .mark{
+      width:34px;
+      height:34px;
+      border-radius:12px;
+      background:
+        radial-gradient(12px 12px at 30% 30%, rgba(255,255,255,.95), rgba(255,255,255,.40)),
+        linear-gradient(135deg, var(--blue), var(--teal));
+      box-shadow: 0 10px 22px rgba(11,99,255,.20);
+    }
+
+    .brand b{font-size:14px; letter-spacing:.2px}
+    .brand span{display:block; font-size:12px; color:var(--muted2)}
+
+    .links{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .links a{
+      font-size:13px;
+      color:var(--muted);
+      padding:8px 10px;
+      border-radius:12px;
+      border:1px solid transparent;
+      transition: all .18s ease;
+    }
+
+    .links a:hover{
+      color:var(--ink);
+      background: rgba(11,99,255,.06);
+      border-color: rgba(11,99,255,.14);
+    }
+
+    .navRight{
+      display:flex;
+      justify-content:flex-end;
+      align-items:center;
+      gap:10px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:10px 12px;
+      font-size:13px;
+      border-radius: 12px;
+      border:1px solid rgba(11,99,255,.20);
+      background: rgba(11,99,255,.04);
+      color: var(--ink);
+      transition: all .18s ease;
+      white-space:nowrap;
+    }
+
+    .btn:hover{transform: translateY(-1px); background: rgba(11,99,255,.06)}
+
+    .btn.primary{
+      background: linear-gradient(135deg, var(--blue), var(--blue2));
+      color:#fff;
+      border-color: rgba(11,99,255,.28);
+      box-shadow: 0 14px 30px rgba(11,99,255,.22);
+    }
+
+    .btn.primary:hover{filter: brightness(1.02)}
+
+    .ghost{
+      border-color: transparent;
+      background: transparent;
+      color: var(--muted);
+    }
+    .ghost:hover{
+      border-color: rgba(11,99,255,.18);
+      background: rgba(11,99,255,.05);
+      color: var(--ink);
+    }
+
+    /* Hero */
+    .hero{padding:52px 0 18px}
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap:28px;
+      align-items:center;
+    }
+
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 10px;
+      border-radius: 999px;
+      background: rgba(11,99,255,.06);
+      border:1px solid rgba(11,99,255,.16);
+      color: var(--blue);
+      font-size:12.5px;
+      font-weight:600;
+      letter-spacing:.15px;
+    }
+    .kdot{
+      width:8px;
+      height:8px;
+      border-radius: 999px;
+      background: var(--blue);
+      box-shadow: 0 0 0 5px rgba(11,99,255,.10);
+    }
+
+    h1{
+      margin:14px 0 10px;
+      font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+      font-size: 56px;
+      line-height: 1.03;
+      letter-spacing: -1px;
+      color:#0b1020;
+    }
+
+    .accent{color: var(--blue)}
+
+    .lead{
+      margin:0 0 18px;
+      font-size: 15.5px;
+      line-height: 1.7;
+      color: var(--muted);
+      max-width: 60ch;
+    }
+
+    .ctaRow{display:flex; gap:12px; flex-wrap:wrap; margin-top:16px}
+
+    .subRow{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top: 18px;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 10px;
+      font-size:12.5px;
+      color: #0b1020;
+      background: rgba(17,24,39,.02);
+      border:1px solid rgba(17,24,39,.10);
+      border-radius: 999px;
+    }
+    .pico{
+      width:10px;
+      height:10px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--blue), var(--teal));
+    }
+
+    /* Hero media */
+    .mediaWrap{
+      position:relative;
+      min-height: 440px;
+      border-radius: 26px;
+    }
+
+    .blob{
+      position:absolute;
+      inset:0;
+      border-radius: 28px;
+      background:
+        radial-gradient(600px 420px at 30% 20%, rgba(11,99,255,.22), transparent 55%),
+        radial-gradient(520px 380px at 85% 35%, rgba(25,196,214,.18), transparent 60%),
+        radial-gradient(520px 380px at 60% 110%, rgba(33,197,93,.18), transparent 60%),
+        linear-gradient(180deg, rgba(11,99,255,.08), rgba(255,255,255,.90));
+      border:1px solid rgba(17,24,39,.10);
+      box-shadow: var(--shadow);
+      clip-path: path("M 52 48 C 105 3 209 9 292 26 C 372 42 460 62 484 126 C 509 190 490 278 450 337 C 410 395 340 428 270 432 C 201 435 133 411 92 367 C 50 322 34 257 34 199 C 34 141  -1 92 52 48 Z");
+      overflow:hidden;
+    }
+
+    .portrait{
+      position:absolute;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding: 36px 30px 26px;
+    }
+
+    .avatarCard{
+      width: 78%;
+      max-width: 360px;
+      aspect-ratio: 1 / 1;
+      border-radius: 26px;
+      background:
+        radial-gradient(260px 220px at 30% 25%, rgba(255,255,255,.90), rgba(255,255,255,.55)),
+        linear-gradient(135deg, rgba(11,99,255,.30), rgba(25,196,214,.20));
+      border:1px solid rgba(255,255,255,.70);
+      box-shadow: 0 18px 40px rgba(10,24,62,.16);
+      position:relative;
+      overflow:hidden;
+      display:grid;
+      place-items:center;
+    }
+
+    .avatarCard:before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background: radial-gradient(220px 180px at 70% 25%, rgba(245,158,11,.25), transparent 60%);
+      opacity:.9;
+    }
+
+    .initials{
+      position:relative;
+      width: 78%;
+      height: 78%;
+      border-radius: 999px;
+      background: linear-gradient(135deg, rgba(11,99,255,.18), rgba(25,196,214,.14));
+      border:1px solid rgba(17,24,39,.10);
+      display:grid;
+      place-items:center;
+    }
+
+    .initials span{
+      font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+      font-size: 58px;
+      letter-spacing: -1px;
+      color: rgba(11,16,32,.90);
+    }
+
+    .shape{
+      position:absolute;
+      border-radius: 20px;
+      filter: saturate(1.05);
+      box-shadow: 0 10px 22px rgba(10,24,62,.10);
+    }
+
+    .shape.s1{width:92px; height:92px; background: rgba(33,197,93,.90); top: 22px; right: 34px; border-radius: 40px 40px 14px 40px;}
+    .shape.s2{width:54px; height:54px; background: rgba(245,158,11,.95); top: 88px; right: 18px; border-radius: 18px; transform: rotate(10deg)}
+    .shape.s3{width:78px; height:78px; background: rgba(11,99,255,.95); bottom: 30px; right: 24px; border-radius: 999px;}
+    .shape.s4{width:60px; height:60px; background: rgba(25,196,214,.95); bottom: 44px; left: 24px; border-radius: 18px; transform: rotate(-14deg)}
+
+    /* Logos strip */
+    .logos{
+      margin-top: 20px;
+      padding: 18px 0 0;
+      border-top: 1px solid var(--line);
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:12px;
+    }
+    .logos p{margin:0; font-size:12.5px; color: var(--muted2); text-align:center}
+    .logoRow{
+      display:flex;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap:18px;
+      align-items:center;
+    }
+    .logoPill{
+      padding:10px 12px;
+      border-radius: 999px;
+      border:1px solid rgba(17,24,39,.10);
+      background: rgba(17,24,39,.02);
+      font-size:12.5px;
+      color: var(--muted);
+    }
+
+    /* Sections */
+    section{padding:38px 0}
+    .sectionHead{display:flex; align-items:flex-end; justify-content:space-between; gap:14px; margin:0 0 16px}
+    .sectionHead h2{margin:0; font-size:20px; letter-spacing:-.2px}
+    .sectionHead p{margin:0; color:var(--muted); font-size:13.5px}
+
+    .grid2{display:grid; grid-template-columns: 1fr 1fr; gap:16px}
+
+    .panel{
+      background: var(--panel);
+      border:1px solid rgba(17,24,39,.10);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow2);
+      padding:18px;
+    }
+
+    .panel h3{margin:0 0 10px; font-size:14px}
+    .panel p{margin:0; color:var(--muted); font-size:13.5px; line-height:1.65}
+
+    .tagRow{display:flex; flex-wrap:wrap; gap:10px; margin-top:12px}
+    .tag{
+      font-size:12px;
+      padding:7px 10px;
+      border-radius:999px;
+      background: rgba(11,99,255,.06);
+      border:1px solid rgba(11,99,255,.14);
+      color: #0b3fb4;
+    }
+
+    .timeline{display:flex; flex-direction:column; gap:10px}
+    .tItem{
+      padding:12px;
+      border-radius: 16px;
+      border:1px solid rgba(17,24,39,.10);
+      background: rgba(17,24,39,.02);
+    }
+    .tTop{display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap}
+    .tTop b{font-size:13px}
+    .tTop span{color:var(--muted2); font-size:12px}
+    .tItem p{margin:8px 0 0; color:var(--muted); font-size:13px; line-height:1.55}
+
+    /* Course modules */
+    .moduleGrid{display:grid; grid-template-columns: repeat(3, 1fr); gap:12px}
+    .module{
+      border-radius: var(--radius2);
+      border:1px solid rgba(17,24,39,.10);
+      background: rgba(255,255,255,.80);
+      padding:14px;
+      min-height:140px;
+      position:relative;
+      overflow:hidden;
+    }
+    .module:before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background: radial-gradient(320px 200px at 25% 15%, rgba(11,99,255,.12), transparent 62%);
+      pointer-events:none;
+    }
+    .module h4{position:relative; margin:0 0 8px; font-size:13.5px}
+    .module ul{position:relative; margin:0; padding-left:18px; color:var(--muted); font-size:12.5px; line-height:1.5}
+    .module li{margin:6px 0}
+
+    .rubric{display:grid; grid-template-columns: 1fr; gap:10px; margin-top:12px}
+    .rub{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      padding:10px 12px;
+      border-radius: 14px;
+      border:1px solid rgba(17,24,39,.10);
+      background: rgba(17,24,39,.02);
+      color: var(--muted);
+      font-size:13px;
+    }
+    .rub b{color: var(--ink)}
+
+    /* Weekly submissions */
+    .weeks{display:grid; grid-template-columns: repeat(4, 1fr); gap:12px}
+    .week{
+      border-radius: var(--radius2);
+      border:1px solid rgba(17,24,39,.10);
+      background: rgba(255,255,255,.80);
+      padding:14px;
+      min-height:150px;
+      position:relative;
+      overflow:hidden;
+      transition: transform .16s ease, box-shadow .16s ease;
+      box-shadow: 0 10px 24px rgba(10,24,62,.06);
+    }
+    .week:hover{transform: translateY(-2px); box-shadow: 0 16px 34px rgba(10,24,62,.10)}
+
+    .wkTop{display:flex; justify-content:space-between; gap:10px; align-items:flex-start}
+    .wkTop b{font-size:13.5px}
+    .badge{
+      font-size:11px;
+      padding:6px 8px;
+      border-radius: 999px;
+      border:1px solid rgba(11,99,255,.16);
+      color: rgba(11,99,255,.95);
+      background: rgba(11,99,255,.06);
+      white-space:nowrap;
+    }
+    .week p{margin:10px 0 0; color:var(--muted); font-size:12.5px; line-height:1.55}
+    .wkLink{
+      margin-top:12px;
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      color: var(--blue);
+      font-size:12.5px;
+      border:1px dashed rgba(11,99,255,.30);
+      padding:8px 10px;
+      border-radius: 12px;
+      background: rgba(11,99,255,.04);
+    }
+
+    /* Footer */
+    footer{padding:28px 0 40px}
+    .foot{
+      border-top:1px solid var(--line);
+      padding-top:16px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:14px;
+      flex-wrap:wrap;
+      color: var(--muted2);
+      font-size:12.5px;
+    }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .nav{grid-template-columns: 1fr auto; grid-template-areas: "brand right" "links links";}
+      .brand{grid-area: brand}
+      .navRight{grid-area: right}
+      .links{grid-area: links; justify-content:flex-start}
+
+      .heroGrid{grid-template-columns: 1fr;}
+      h1{font-size: 46px}
+      .mediaWrap{min-height: 380px}
+      .moduleGrid{grid-template-columns: 1fr 1fr}
+      .weeks{grid-template-columns: 1fr 1fr}
+    }
+
+    @media (max-width: 640px){
+      h1{font-size: 38px}
+      .grid2{grid-template-columns: 1fr}
+      .moduleGrid{grid-template-columns: 1fr}
+      .weeks{grid-template-columns: 1fr}
+      .mediaWrap{min-height: 340px}
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      html{scroll-behavior:auto}
+      .btn:hover,.week:hover{transform:none}
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <nav class="nav" aria-label="Primary">
+        <a class="brand" href="#top" aria-label="Go to top">
+          <div class="mark" aria-hidden="true"></div>
+          <div>
+            <b>Dr Mohammad Nadir Sahak</b>
+            <span>GenAI for Work & Research Portfolio</span>
+          </div>
+        </a>
+
+        <div class="links" role="navigation">
+          <a href="#top">Home</a>
+          <a href="#about">About</a>
+          <a href="#course">Course</a>
+          <a href="#weeks">Submissions</a>
+          <a href="#contact">Resources</a>
+        </div>
+
+        <div class="navRight">
+          <a class="btn ghost" href="#contact">Sign in</a>
+          <a class="btn primary" href="#weeks">View portfolio</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap">
+        <div class="heroGrid">
+          <div>
+            <div class="kicker"><span class="kdot" aria-hidden="true"></span>Generative AI for Work & Research</div>
+            <h1>Level up your <span class="accent">public health workflows</span> with responsible GenAI.</h1>
+            <p class="lead">
+              I am a medical doctor and epidemiologist with over 13 years of experience across integrated disease surveillance, IHR core capacities, outbreak response, and multi country coordination. This site curates my weekly submissions and course outputs.
+            </p>
+
+            <div class="ctaRow">
+              <a class="btn primary" href="#weeks">Browse submissions</a>
+              <a class="btn" href="#course">About the course</a>
+            </div>
+
+            <div class="subRow" aria-label="Highlights">
+              <span class="pill"><span class="pico" aria-hidden="true"></span>Integrated Disease Surveillance (IDS)</span>
+              <span class="pill"><span class="pico" aria-hidden="true"></span>IHR (2005) strengthening</span>
+              <span class="pill"><span class="pico" aria-hidden="true"></span>Outbreak analytics and dashboards</span>
+              <span class="pill"><span class="pico" aria-hidden="true"></span>Emergency response operations</span>
+            </div>
+
+            <div class="logos" aria-label="At a glance">
+              <p>Experience spans surveillance strategy, readiness, and response enablement</p>
+              <div class="logoRow">
+                <span class="logoPill">WHO EMRO</span>
+                <span class="logoPill">Surveillance systems</span>
+                <span class="logoPill">Preparedness and readiness</span>
+                <span class="logoPill">Field Epidemiology Training</span>
+                <span class="logoPill">Operational coordination</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mediaWrap" aria-label="Hero visual">
+            <div class="blob" aria-hidden="true"></div>
+            <div class="shape s1" aria-hidden="true"></div>
+            <div class="shape s2" aria-hidden="true"></div>
+            <div class="shape s3" aria-hidden="true"></div>
+            <div class="shape s4" aria-hidden="true"></div>
+
+            <div class="portrait">
+              <div class="avatarCard" aria-label="Portrait placeholder">
+                <div class="initials"><span>NS</span></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="wrap">
+        <div class="sectionHead">
+          <div>
+            <h2>About me</h2>
+            <p>Public health leadership, surveillance systems, and practical analytics.</p>
+          </div>
+        </div>
+
+        <div class="grid2">
+          <div class="panel">
+            <h3>Summary</h3>
+            <p>
+              I support countries and partners to prevent, prepare for, detect, and respond to emerging health threats. My work spans integrated disease surveillance, operational readiness, and emergency response, with hands on experience strengthening systems, developing technical guidance, and enabling evidence based decision making.
+            </p>
+            <div class="tagRow" aria-label="Areas of expertise">
+              <span class="tag">Surveillance and intelligence</span>
+              <span class="tag">Preparedness and readiness</span>
+              <span class="tag">Outbreak response</span>
+              <span class="tag">Health security and IHR</span>
+              <span class="tag">Program management</span>
+              <span class="tag">Resource mobilization</span>
+            </div>
+          </div>
+
+          <div class="panel">
+            <h3>Experience highlights</h3>
+            <div class="timeline" aria-label="Experience timeline">
+              <div class="tItem">
+                <div class="tTop">
+                  <b>WHO EMRO (Cairo) | Technical Officer, Epidemiologist</b>
+                  <span>Apr 2022 to present</span>
+                </div>
+                <p>
+                  Leading regional implementation of Integrated Disease Surveillance across 22 countries, developing guidance and monitoring frameworks, supporting national roadmaps, and contributing to outbreak response operations.
+                </p>
+              </div>
+              <div class="tItem">
+                <div class="tTop">
+                  <b>WHO Afghanistan (Kabul) | NPO, Surveillance, Outbreak Response and IHR</b>
+                  <span>Aug 2011 to Apr 2022</span>
+                </div>
+                <p>
+                  Managed national surveillance, led surveillance and PoE pillars during COVID 19, supported JEE and NAPHS processes, and enabled DHIS2 based reporting and visualization workflows.
+                </p>
+              </div>
+              <div class="tItem">
+                <div class="tTop">
+                  <b>Education</b>
+                  <span>MD and MSc</span>
+                </div>
+                <p>
+                  MSc in Epidemiology and Biostatistics (Aga Khan University), and MD (Nangarhar University). Strong interest in responsible AI tools that accelerate analysis and documentation while maintaining rigor.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="course">
+      <div class="wrap">
+        <div class="sectionHead">
+          <div>
+            <h2>About the course</h2>
+            <p>An 8 week cohort focused on responsible, no code productivity and applied AI.</p>
+          </div>
+        </div>
+
+        <div class="grid2">
+          <div class="panel">
+            <h3>What the bootcamp emphasizes</h3>
+            <p>
+              A guided program combining weekly live workshops, weekly help sessions, community support, feedback on assessments, and capstone coaching, with lifetime access to a tutorial library and a shareable certificate.
+            </p>
+            <div class="rubric" aria-label="Grading overview">
+              <div class="rub"><span>Online quizzes</span><b>15%</b></div>
+              <div class="rub"><span>Workshop assignments</span><b>35%</b></div>
+              <div class="rub"><span>Workshop attendance and participation</span><b>10%</b></div>
+              <div class="rub"><span>Final project</span><b>40%</b></div>
+              <div class="rub"><span>Passing grade</span><b>80%</b></div>
+              <div class="rub"><span>Attendance policy</span><b>Attend 5+ workshops</b></div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <h3>How I will apply it</h3>
+            <p>
+              I will translate course methods into practical, auditable workflows for surveillance and preparedness. This includes structured technical writing, automated analysis and reporting, and responsible task automation with clear human oversight.
+            </p>
+            <div class="tagRow" aria-label="Planned applications">
+              <span class="tag">Automated situation reporting</span>
+              <span class="tag">Surveillance dashboards and QA</span>
+              <span class="tag">Literature monitoring workflows</span>
+              <span class="tag">Template driven technical writing</span>
+              <span class="tag">Reproducible analysis</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel" style="margin-top:16px">
+          <h3>Modules at a glance</h3>
+          <div class="moduleGrid" aria-label="Course modules">
+            <div class="module">
+              <h4>Module 1: Websites, documents and presentations</h4>
+              <ul>
+                <li>How LLMs work and how to generate outputs responsibly</li>
+                <li>Markdown, LaTeX, and HTML formatting workflows</li>
+                <li>Building simple research websites using no code tooling</li>
+              </ul>
+            </div>
+            <div class="module">
+              <h4>Module 2: AI automated data analysis</h4>
+              <ul>
+                <li>Rapid data analysis using code interpreter style tools</li>
+                <li>Automated dashboards and recurring spreadsheet workflows</li>
+                <li>Quality checks and ethical reporting practices</li>
+              </ul>
+            </div>
+            <div class="module">
+              <h4>Module 3: GenAI for research and text analysis</h4>
+              <ul>
+                <li>Efficient literature search and synthesis systems</li>
+                <li>Text classification workflows and summarization</li>
+                <li>Knowledge maps and structured evidence tables</li>
+              </ul>
+            </div>
+            <div class="module">
+              <h4>Module 4: Custom GPTs and chatbots</h4>
+              <ul>
+                <li>Context management and retrieval concepts</li>
+                <li>Custom assistants for scoped use cases</li>
+                <li>Evaluation and guardrails</li>
+              </ul>
+            </div>
+            <div class="module">
+              <h4>Module 5: AI for task automation</h4>
+              <ul>
+                <li>Agent based workflows and app to app automations</li>
+                <li>Routine writing and response workflows with oversight</li>
+                <li>Browser assisted workflows for structured tasks</li>
+              </ul>
+            </div>
+            <div class="module">
+              <h4>Module 6: Communication and outreach</h4>
+              <ul>
+                <li>Audience specific summaries with transparency</li>
+                <li>Figures, diagrams, and visualization prompting</li>
+                <li>Content creation with integrity</li>
+              </ul>
+            </div>
+          </div>
+          <div style="height:12px"></div>
+          <div class="module" style="min-height:unset">
+            <h4>Module 7: Capstone project and showcase</h4>
+            <ul>
+              <li>Peer feedback and iteration</li>
+              <li>Final presentations and public Q and A session</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="weeks">
+      <div class="wrap">
+        <div class="sectionHead">
+          <div>
+            <h2>My weekly submissions</h2>
+            <p>Placeholders for now. Links and artifacts will be added as the course progresses.</p>
+          </div>
+        </div>
+
+        <div class="weeks" aria-label="Weekly submission placeholders">
+          <div class="week">
+            <div class="wkTop"><b>Week 1</b><span class="badge">Placeholder</span></div>
+            <p>Foundations: responsible prompting, structured outputs, and a first reusable template for my work context.</p>
+            <a class="wkLink" href="#" aria-label="Add link later">Add link later</a>
+          </div>
+          <div class="week">
+            <div class="wkTop"><b>Week 2</b><span class="badge">Placeholder</span></div>
+            <p>Websites and documents: converting notes into clean HTML, briefs, and reproducible documentation.</p>
+            <a class="wkLink" href="#" aria-label="Add link later">Add link later</a>
+          </div>
+          <div class="week">
+            <div class="wkTop"><b>Week 3</b><span class="badge">Placeholder</span></div>
+            <p>AI automated analysis: an auditable workflow for dataset cleaning, summaries, and visual checks.</p>
+            <a class="wkLink" href="#" aria-label="Add link later">Add link later</a>
+          </div>
+          <div class="week">
+            <div class="wkTop"><b>Week 4</b><span class="badge">Placeholder</span></div>
+            <p>Dashboards and reporting: a draft decision oriented report template and indicator definitions.</p>
+            <a class="wkLink" href="#" aria-label="Add link later">Add link later</a>
+          </div>
+          <div class="week">
+            <div class="wkTop"><b>Week 5</b><span class="badge">Placeholder</span></div>
+            <p>Text analysis: literature review workflow and structured synthesis for a selected topic.</p>
+            <a class="wkLink" href="#" aria-label="Add link later">Add link later</a>
+          </div>
+          <div class="week">
+            <div class="wkTop"><b>Week 6</b><span class="badge">Placeholder</span></div>
+            <p>Custom GPT: a scoped assistant for surveillance operations, prompt guardrails, and evaluation.</p>
+            <a class="wkLink" href="#" aria-label="Add link later">Add link later</a>
+          </div>
+          <div class="week">
+            <div class="wkTop"><b>Week 7</b><span class="badge">Placeholder</span></div>
+            <p>Task automation: a no code workflow for recurring reporting tasks with clear human oversight.</p>
+            <a class="wkLink" href="#" aria-label="Add link later">Add link later</a>
+          </div>
+          <div class="week">
+            <div class="wkTop"><b>Week 8</b><span class="badge">Placeholder</span></div>
+            <p>Capstone: final deliverable, presentation assets, and documentation for reuse and handover.</p>
+            <a class="wkLink" href="#" aria-label="Add link later">Add link later</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="wrap">
+        <div class="sectionHead">
+          <div>
+            <h2>Resources and contact</h2>
+            <p>Email address intentionally omitted to reduce spam.</p>
+          </div>
+        </div>
+
+        <div class="grid2">
+          <div class="panel">
+            <h3>Preferred channels</h3>
+            <p>
+              If you would like to connect, please use your preferred professional channel (for example, LinkedIn) or request contact details through an existing trusted connection.
+            </p>
+            <div class="ctaRow" style="margin-top:12px">
+              <a class="btn" href="#" aria-label="Add LinkedIn link later">LinkedIn (add link)</a>
+              <a class="btn" href="#" aria-label="Add Google Scholar link later">Google Scholar (add link)</a>
+              <a class="btn" href="#" aria-label="Add publications link later">Publications (add link)</a>
+            </div>
+          </div>
+
+          <div class="panel">
+            <h3>Collaboration topics</h3>
+            <p>
+              Surveillance strategy and implementation, outbreak analytics, operational readiness, cross border coordination, and responsible AI enablement for public health workflows.
+            </p>
+            <div class="tagRow" aria-label="Collaboration topics">
+              <span class="tag">IDS implementation packages</span>
+              <span class="tag">IHR and PoE capacities</span>
+              <span class="tag">Early warning systems</span>
+              <span class="tag">Monitoring frameworks</span>
+              <span class="tag">Evidence to policy</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="foot">
+        <div>© <span id="y"></span> Dr Mohammad Nadir Sahak</div>
+        <div>Built as a single page portfolio for the Generative AI for Work & Research course.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function(){
+      var el = document.getElementById('y');
+      if(el) el.textContent = String(new Date().getFullYear());
+    })();
+  </script>
+</body>
+</html>
